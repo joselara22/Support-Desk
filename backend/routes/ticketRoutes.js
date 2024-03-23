@@ -3,6 +3,10 @@ const router = express.Router();
 const { protect } = require('../middleware/authMiddleware');
 const controller = require('../controllers/ticketController');
 
+// Re route into the note router
+const noteRouter = require('./noteRoutes');
+router.use('/:ticketId/notes', noteRouter);
+
 router
   .route('/')
   .get(protect, controller.getTickets)
